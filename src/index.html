@@ -1,122 +1,173 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>The Weather Station</title>
 
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
+  <body>
+
+    <!-- TOP BUTTON -->
+    <button
+      class="button"
+      id="top-button"
+      onclick="handleNavButtonClick('header')"
+    >
+      top
+    </button>
+
+    <!-- HEADER -->
     <header id="header">
-        <div id="div-header-image">
-            <img src="../media/ws-phone-test.jpg" alt="">
-        </div>
-        <p id="header-title">the weather station</p>
+      <div id="div-header-image">
+        <img src="../media/ws-phone-test.jpg" alt="" />
+      </div>
+      <!-- <p id="header-title">the weather station</p> -->
     </header>
 
     <!-- NAV BAR -->
-    <nav id="header-buttons-wrapper">
-        <button onclick="handleNavButtonClick('data-now')" class="button header-button button-active">latest
-            data</button>
-        <button onclick="handleNavButtonClick('graphs')" class="button header-button">data graphs</button>
-        <button onclick="handleNavButtonClick('data-past')" class="button header-button">raw data</button>
-        <button onclick="handleNavButtonClick('info')" class="button header-button">info</button>
+    <nav id="nav-buttons-wrapper">
+      <button
+        onclick="handleNavButtonClick('data-now')"
+        class="button nav-button"
+        id="nav-button-now"
+      >
+        latest data
+      </button>
+      <button
+        onclick="handleNavButtonClick('graphs')"
+        class="button nav-button"
+        id="nav-button-graphs"
+      >
+        data graphs
+      </button>
+      <button
+        onclick="handleNavButtonClick('data-past')"
+        class="button nav-button"
+        id="nav-button-raw"
+      >
+        raw data
+      </button>
+      <button
+        onclick="handleNavButtonClick('info')"
+        class="button nav-button"
+        id="nav-button-info"
+      >
+        info
+      </button>
     </nav>
 
     <!-- MAIN PART -->
-
     <main>
-        <section id="data-now">
-            <p>latest data</p>
-            <div id="data-now-date-time">
-                Date, Time
-            </div>
-            <div id="data-now-data">
-                <div class="data-now-data-inner" id="data-now-data-inner-temperature">
-                    <span class="data-now-headline">temperature</span>
-                    <span id="data-now-temperature">N/A °C</span>
-                </div>
-                <div class="data-now-data-inner" id="data-now-data-inner-humidity">
-                    <span class="data-now-headline">humidity</span>
-                    <span id="data-now-humidity">N/A %</span>
-                </div>
-                <div class="data-now-data-inner" id="data-now-data-inner-pm25">
-                    <span class="data-now-headline">PM 2.5</span>
-                    <span id="data-now-pm25">N/A ug/m3</span>
-                </div>
-                <div class="data-now-data-inner" id="data-now-data-inner-co2">
-                    <span class="data-now-headline">co₂</span>
-                    <span id="data-now-co2">N/A ppm</span>
-                </div>
-                <div class="data-now-data-inner" id="data-now-data-inner-gas-resistance">
-                    <span class="data-now-headline">gas resistance</span>
-                    <span id="data-now-gas-resistance">N/A kOhm</span>
-                </div>
-                <div class="data-now-data-inner" id="data-now-data-inner-air-pressure">
-                    <span class="data-now-headline">air pressure</span>
-                    <span id="data-now-air-pressure">N/A hppa</span>
-                </div>
-            </div>
-        </section>
+      <!-- NOW SECTION -->
+      <section id="data-now">
+        <p>latest data</p>
+        <div id="data-now-date-time">Date, Time</div>
+        <div id="data-now-data">
+          <div class="data-now-data-inner" id="data-now-data-inner-temperature">
+            <span class="data-now-headline">temperature</span>
+            <span id="data-now-temperature">N/A °C</span>
+          </div>
+          <div class="data-now-data-inner" id="data-now-data-inner-humidity">
+            <span class="data-now-headline">humidity</span>
+            <span id="data-now-humidity">N/A %</span>
+          </div>
+          <div class="data-now-data-inner" id="data-now-data-inner-pm25">
+            <span class="data-now-headline">PM 2.5</span>
+            <span id="data-now-pm25">N/A ug/m3</span>
+          </div>
+          <div class="data-now-data-inner" id="data-now-data-inner-co2">
+            <span class="data-now-headline">co₂</span>
+            <span id="data-now-co2">N/A ppm</span>
+          </div>
+          <div
+            class="data-now-data-inner"
+            id="data-now-data-inner-gas-resistance"
+          >
+            <span class="data-now-headline">gas resistance</span>
+            <span id="data-now-gas-resistance">N/A kOhm</span>
+          </div>
+          <div
+            class="data-now-data-inner"
+            id="data-now-data-inner-air-pressure"
+          >
+            <span class="data-now-headline">air pressure</span>
+            <span id="data-now-air-pressure">N/A hppa</span>
+          </div>
+        </div>
+      </section>
 
-        <section id="graphs">
-            <p>data graphs</p>
-            <div id="graphs-button-wrapper">
-                <button class="button graphs-button" id="button-dht-tmp">temperature</button>
-                <button class="button graphs-button" id="button-dht-hum">humidity</button>
-                <button class="button graphs-button" id="button-scd-co2">co₂</button>
-                <button class="button graphs-button" id="button-bmp-gas">gas resistance</button>
-                <button class="button graphs-button" id="button-bmp-pre">air pressure</button>
-                <button class="button graphs-button" id="button-pms-pm">pm concentration</button>
-                <button class="button graphs-button" id="button-pms-pmc">pm count</button>
-            </div>
-            <div> --- GRAPHS HERE --- </div>
-        </section>
+      <!-- GRAPHS SECTION -->
+      <section id="graphs">
+        <p>data graphs</p>
+        <div id="graphs-button-wrapper">
+          <button class="button graphs-button" id="button-dht-tmp">
+            temperature
+          </button>
+          <button class="button graphs-button" id="button-dht-hum">
+            humidity
+          </button>
+          <button class="button graphs-button" id="button-scd-co2">co₂</button>
+          <button class="button graphs-button" id="button-bmp-gas">
+            gas resistance
+          </button>
+          <button class="button graphs-button" id="button-bmp-pre">
+            air pressure
+          </button>
+          <button class="button graphs-button" id="button-pms-pm">
+            pm concentration
+          </button>
+          <button class="button graphs-button" id="button-pms-pmc">
+            pm count
+          </button>
+        </div>
+        <div>--- GRAPHS HERE ---</div>
+      </section>
 
-        <section id="data-past">
-            <p>raw data</p>
-            <div id="data-past-table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>date</th>
-                            <th>time</th>
-                            <th>temperature</th>
-                            <th>humidity</th>
-                            <th>pm 2.5</th>
-                            <th>co₂</th>
-                            <th>gas resistance</th>
-                        </tr>
-                    </thead>
+      <!-- PAST SECTION -->
+      <section id="data-past">
+        <p>raw data</p>
+        <div id="data-past-table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>date</th>
+                <th>time</th>
+                <th>temperature</th>
+                <th>humidity</th>
+                <th>pm 2.5</th>
+                <th>co₂</th>
+                <th>gas resistance</th>
+              </tr>
+            </thead>
 
-                    <tbody id="weather-data-body">
-                        <!-- JavaScript inserts rows here -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
+            <tbody id="weather-data-body">
+              <!-- JavaScript inserts rows here -->
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-        <section id="info">
-            <p>info</p>
-            <div id="div-header-image">
-                <img src="../media/ws-phone-test.jpg" alt="">
-            </div>
-            <div id="div-header-image">
-                <img src="../media/ws-phone-test.jpg" alt="">
-            </div>
-            <div id="div-header-image">
-                <img src="../media/ws-phone-test.jpg" alt="">
-            </div>
-        </section>
-
+      <!-- INFO SECTION -->
+      <section id="info">
+        <p>info</p>
+        <div id="div-header-image">
+          <img src="../media/ws-phone-test.jpg" alt="" />
+        </div>
+        <div id="div-header-image">
+          <img src="../media/ws-phone-test.jpg" alt="" />
+        </div>
+        <div id="div-header-image">
+          <img src="../media/ws-phone-test.jpg" alt="" />
+        </div>
+      </section>
     </main>
 
+    <!-- SCRIPTS -->
     <script src="./index.js"></script>
-</body>
-
+  </body>
 </html>
