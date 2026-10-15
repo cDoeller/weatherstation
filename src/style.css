@@ -65,8 +65,16 @@ div {
 /* GENERAL */
 /* ----------------------- */
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--general-background-color);
+}
+
+section {
+    scroll-margin-top: 1.5rem;
 }
 
 img {
@@ -74,11 +82,16 @@ img {
 }
 
 .button {
-    /* border-left: var(--general-line-weight) solid var(--general-border-color); */
-    /* border-top: var(--general-line-weight) solid var(--general-border-color); */
     background-color: var(--inverse-background-color);
     color: var(--inverse-font-color);
+    border: var(--general-line-weight) solid var(--general-border-color);
     padding: 0.2rem 0.5rem;
+}
+
+.button-active {
+    background-color: var(--general-background-color);
+    color: var(--general-font-color);
+    border: var(--general-line-weight) solid var(--general-border-color);
 }
 
 /* ----------------------- */
@@ -249,3 +262,11 @@ th {
 }
 
 #weather-data-body {}
+
+/* INFO */
+
+#info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

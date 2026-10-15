@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <header>
+    <header id="header">
         <div id="div-header-image">
             <img src="../media/ws-phone-test.jpg" alt="">
         </div>
@@ -21,10 +21,11 @@
 
     <!-- NAV BAR -->
     <nav id="header-buttons-wrapper">
-        <button class="button header-button">latest data</button>
-        <button class="button header-button">graphs</button>
-        <button class="button header-button">raw data</button>
-        <button class="button header-button">info</button>
+        <button onclick="handleNavButtonClick('data-now')" class="button header-button button-active">latest
+            data</button>
+        <button onclick="handleNavButtonClick('graphs')" class="button header-button">data graphs</button>
+        <button onclick="handleNavButtonClick('data-past')" class="button header-button">raw data</button>
+        <button onclick="handleNavButtonClick('info')" class="button header-button">info</button>
     </nav>
 
     <!-- MAIN PART -->
@@ -100,7 +101,7 @@
             </div>
         </section>
 
-        <section id="graphs">
+        <section id="info">
             <p>info</p>
             <div id="div-header-image">
                 <img src="../media/ws-phone-test.jpg" alt="">
