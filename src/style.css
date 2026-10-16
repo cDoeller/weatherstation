@@ -274,9 +274,12 @@ thead {
 tr {
 }
 
-th {
+th, td {
+  white-space: nowrap;
+  min-width: fit-content;
   padding: 0 0.5rem;
   border: var(--general-line-weight) solid var(--general-border-color);
+  text-align: center;
 }
 
 #weather-data-body {

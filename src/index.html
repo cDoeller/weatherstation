@@ -1,173 +1,175 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>The Weather Station</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
+  <title>The Weather Station</title>
 
-  <body>
+  <link rel="stylesheet" href="reset.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-    <!-- TOP BUTTON -->
-    <button
-      class="button"
-      id="top-button"
-      onclick="handleNavButtonClick('header')"
-    >
-      top
+<body>
+
+  <!-- TOP BUTTON -->
+  <button class="button" id="top-button" onclick="handleNavButtonClick('header')">
+    top
+  </button>
+
+  <!-- HEADER -->
+  <header id="header">
+    <div id="div-header-image">
+      <img src="../media/ws-phone-test.jpg" alt="" />
+    </div>
+    <p id="header-title">the weather station</p>
+  </header>
+
+  <!-- NAV BAR -->
+  <nav id="nav-buttons-wrapper">
+    <button onclick="handleNavButtonClick('data-now')" class="button nav-button" id="nav-button-now">
+      latest data
     </button>
+    <button onclick="handleNavButtonClick('graphs')" class="button nav-button" id="nav-button-graphs">
+      data graphs
+    </button>
+    <button onclick="handleNavButtonClick('data-past')" class="button nav-button" id="nav-button-raw">
+      raw data
+    </button>
+    <button onclick="handleNavButtonClick('info')" class="button nav-button" id="nav-button-info">
+      info
+    </button>
+  </nav>
 
-    <!-- HEADER -->
-    <header id="header">
+  <!-- MAIN PART -->
+  <main>
+    <!-- NOW SECTION -->
+    <section id="data-now">
+      <p>latest data</p>
+      <div id="data-now-date-time">Date, Time</div>
+      <div id="data-now-data">
+        <div class="data-now-data-inner" id="data-now-data-inner-temperature">
+          <span class="data-now-headline">temperature</span>
+          <span id="data-now-temperature">N/A °C</span>
+        </div>
+        <div class="data-now-data-inner" id="data-now-data-inner-humidity">
+          <span class="data-now-headline">humidity</span>
+          <span id="data-now-humidity">N/A %</span>
+        </div>
+        <div class="data-now-data-inner" id="data-now-data-inner-pm25">
+          <span class="data-now-headline">PM 2.5</span>
+          <span id="data-now-pm25">N/A ug/m3</span>
+        </div>
+        <div class="data-now-data-inner" id="data-now-data-inner-co2">
+          <span class="data-now-headline">co₂</span>
+          <span id="data-now-co2">N/A ppm</span>
+        </div>
+        <div class="data-now-data-inner" id="data-now-data-inner-gas-resistance">
+          <span class="data-now-headline">gas resistance</span>
+          <span id="data-now-gas-resistance">N/A kOhm</span>
+        </div>
+        <div class="data-now-data-inner" id="data-now-data-inner-air-pressure">
+          <span class="data-now-headline">air pressure</span>
+          <span id="data-now-air-pressure">N/A hppa</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRAPHS SECTION -->
+    <section id="graphs">
+      <p>data graphs</p>
+      <div id="graphs-button-wrapper">
+        <button class="button graphs-button" id="button-dht-tmp">
+          temperature
+        </button>
+        <button class="button graphs-button" id="button-dht-hum">
+          humidity
+        </button>
+        <button class="button graphs-button" id="button-scd-co2">co₂</button>
+        <button class="button graphs-button" id="button-bmp-gas">
+          gas resistance
+        </button>
+        <button class="button graphs-button" id="button-bmp-pre">
+          air pressure
+        </button>
+        <button class="button graphs-button" id="button-pms-pm">
+          pm concentration
+        </button>
+        <button class="button graphs-button" id="button-pms-pmc">
+          pm count
+        </button>
+      </div>
+      <!-- <div>--- GRAPHS HERE ---</div> -->
+    </section>
+
+    <!-- PAST SECTION -->
+    <section id="data-past">
+      <p>raw data</p>
+
+      <div id="data-past-table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>date</th>
+              <th>time</th>
+              <th>DHT tmp (°C)</th>
+              <th>BME tmp (°C)</th>
+              <th>SCD tmp (°C)</th>
+              <th>DHT hum (%)</th>
+              <th>BME hum (%)</th>
+              <th>SCD hum (%)</th>
+              <th>PM1 (µg/m³)</th>
+              <th>PM2.5 (µg/m³)</th>
+              <th>PM10 (µg/m³)</th>
+              <th>0.3 µm (#/L)</th>
+              <th>0.5 µm (#/L)</th>
+              <th>1.0 µm (#/L)</th>
+              <th>2.5 µm (#/L)</th>
+              <th>5.0 µm (#/L)</th>
+              <th>10 µm (#/L)</th>
+              <th>CO₂ (ppm)</th>
+              <th>gas (kΩ)</th>
+              <th>pressure (hPa)</th>
+            </tr>
+          </thead>
+
+          <tbody id="weather-data-body">
+            <!-- JavaScript inserts rows here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- INFO SECTION -->
+    <section id="info">
+      <p>info</p>
+      <p>Located in the Umweltgarten, this weather station is part of a collaboration with the garden exploring urban
+        ecologies, environmental monitoring, and the relationship between technology and the living world. It
+        continuously records local environmental conditions, making changes in its immediate surroundings measurable and
+        visible.
+      </p>
+      <p>
+        The system combines several sensors to measure air temperature and humidity (DHT22, BME680, SCD41), atmospheric
+        pressure, and gas resistance as an indicator of changes in air composition. A particulate matter sensor (PMS 5003) measures
+        airborne particles of different sizes, including PM1, PM2.5, and PM10. Carbon dioxide levels are also
+        recorded (SCD 41). The collected data is transmitted automatically and made accessible through this website.
+      </p>
+      <p>
+        Beyond its function as a monitoring device, the installation is part of an artistic research practice concerned
+        with how we observe and interpret our environment. It connects to my PhD project Vegetal Diaries, which
+        investigates urban plants, energy flows, and practices of environmental observation. The research explores how
+        plants and their living conditions can be approached through different forms of sensing, and how measurement
+        technologies shape what we perceive as our environment — including what remains invisible or unmeasured.</p>
+      </p>
       <div id="div-header-image">
         <img src="../media/ws-phone-test.jpg" alt="" />
       </div>
-      <p id="header-title">the weather station</p>
-    </header>
+    </section>
+  </main>
 
-    <!-- NAV BAR -->
-    <nav id="nav-buttons-wrapper">
-      <button
-        onclick="handleNavButtonClick('data-now')"
-        class="button nav-button"
-        id="nav-button-now"
-      >
-        latest data
-      </button>
-      <button
-        onclick="handleNavButtonClick('graphs')"
-        class="button nav-button"
-        id="nav-button-graphs"
-      >
-        data graphs
-      </button>
-      <button
-        onclick="handleNavButtonClick('data-past')"
-        class="button nav-button"
-        id="nav-button-raw"
-      >
-        raw data
-      </button>
-      <button
-        onclick="handleNavButtonClick('info')"
-        class="button nav-button"
-        id="nav-button-info"
-      >
-        info
-      </button>
-    </nav>
+  <!-- SCRIPTS -->
+  <script src="./index.js"></script>
+</body>
 
-    <!-- MAIN PART -->
-    <main>
-      <!-- NOW SECTION -->
-      <section id="data-now">
-        <p>latest data</p>
-        <div id="data-now-date-time">Date, Time</div>
-        <div id="data-now-data">
-          <div class="data-now-data-inner" id="data-now-data-inner-temperature">
-            <span class="data-now-headline">temperature</span>
-            <span id="data-now-temperature">N/A °C</span>
-          </div>
-          <div class="data-now-data-inner" id="data-now-data-inner-humidity">
-            <span class="data-now-headline">humidity</span>
-            <span id="data-now-humidity">N/A %</span>
-          </div>
-          <div class="data-now-data-inner" id="data-now-data-inner-pm25">
-            <span class="data-now-headline">PM 2.5</span>
-            <span id="data-now-pm25">N/A ug/m3</span>
-          </div>
-          <div class="data-now-data-inner" id="data-now-data-inner-co2">
-            <span class="data-now-headline">co₂</span>
-            <span id="data-now-co2">N/A ppm</span>
-          </div>
-          <div
-            class="data-now-data-inner"
-            id="data-now-data-inner-gas-resistance"
-          >
-            <span class="data-now-headline">gas resistance</span>
-            <span id="data-now-gas-resistance">N/A kOhm</span>
-          </div>
-          <div
-            class="data-now-data-inner"
-            id="data-now-data-inner-air-pressure"
-          >
-            <span class="data-now-headline">air pressure</span>
-            <span id="data-now-air-pressure">N/A hppa</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- GRAPHS SECTION -->
-      <section id="graphs">
-        <p>data graphs</p>
-        <div id="graphs-button-wrapper">
-          <button class="button graphs-button" id="button-dht-tmp">
-            temperature
-          </button>
-          <button class="button graphs-button" id="button-dht-hum">
-            humidity
-          </button>
-          <button class="button graphs-button" id="button-scd-co2">co₂</button>
-          <button class="button graphs-button" id="button-bmp-gas">
-            gas resistance
-          </button>
-          <button class="button graphs-button" id="button-bmp-pre">
-            air pressure
-          </button>
-          <button class="button graphs-button" id="button-pms-pm">
-            pm concentration
-          </button>
-          <button class="button graphs-button" id="button-pms-pmc">
-            pm count
-          </button>
-        </div>
-        <div>--- GRAPHS HERE ---</div>
-      </section>
-
-      <!-- PAST SECTION -->
-      <section id="data-past">
-        <p>raw data</p>
-        <div id="data-past-table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>date</th>
-                <th>time</th>
-                <th>temperature</th>
-                <th>humidity</th>
-                <th>pm 2.5</th>
-                <th>co₂</th>
-                <th>gas resistance</th>
-              </tr>
-            </thead>
-
-            <tbody id="weather-data-body">
-              <!-- JavaScript inserts rows here -->
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- INFO SECTION -->
-      <section id="info">
-        <p>info</p>
-        <div id="div-header-image">
-          <img src="../media/ws-phone-test.jpg" alt="" />
-        </div>
-        <div id="div-header-image">
-          <img src="../media/ws-phone-test.jpg" alt="" />
-        </div>
-        <div id="div-header-image">
-          <img src="../media/ws-phone-test.jpg" alt="" />
-        </div>
-      </section>
-    </main>
-
-    <!-- SCRIPTS -->
-    <script src="./index.js"></script>
-  </body>
 </html>
