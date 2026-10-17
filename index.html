@@ -102,8 +102,7 @@
         </button>
       </div>
 
-
-      <div id="graphs-date-wrapper">
+      <div class="date-time-wrapper" id="graphs-date-wrapper">
         <label>
           start
           <input type="date" id="graphs-start-date">
@@ -126,6 +125,22 @@
     <!-- PAST SECTION -->
     <section id="data-past">
       <p>raw data</p>
+
+      <div class="date-time-wrapper" id="data-past-date-wrapper">
+        <label>
+          start
+          <input type="date" id="data-past-start-date">
+        </label>
+
+        <label>
+          end
+          <input type="date" id="data-past-end-date">
+        </label>
+
+        <button class="button" id="data-past-date-submit">
+          update
+        </button>
+      </div>
 
       <div id="data-past-table-wrapper">
         <table>
@@ -158,6 +173,15 @@
             <!-- JavaScript inserts rows here -->
           </tbody>
         </table>
+      </div>
+
+      <div id="data-past-controls">
+        <div id="data-past-pagination">
+          <!-- JavaScript erzeugt Seitenbuttons -->
+        </div>
+        <button class="button" id="data-past-csv">
+          download csv
+        </button>
       </div>
     </section>
 

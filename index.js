@@ -2,9 +2,10 @@
 // IMPORTS
 // -------------------------
 
-import { updateGeneralData } from "./js/data.js";
 import { startNavigation } from "./js/navigation.js";
 import { startCharts } from "./js/charts.js";
+import { updateGeneralData } from "./js/latest.js";
+import { startPastData } from "./js/past.js";
 
 // -------------------------
 // MODULE EVENT LOOPS
@@ -13,3 +14,4 @@ import { startCharts } from "./js/charts.js";
 updateGeneralData();
 startNavigation();
 startCharts();
+startPastData();
