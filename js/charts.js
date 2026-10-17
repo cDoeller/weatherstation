@@ -531,7 +531,7 @@ function renderChart(chartName) {
                             chart.data.datasets.forEach(
                                 (dataset) => {
 
-                                    dataset.borderColor = "#888888";
+                                    // dataset.borderColor = "#888888";
                                     dataset.borderWidth = 1;
 
                                 }
