@@ -83,7 +83,7 @@ function handleNavButtonClick(target) {
         case pastElement.id:
             toggleButtonRowActiveOne(navButtonElements, navButtonRawElement);
             break;
-        case navButtonInfoElement.innerHTML:
+        case infoElement.id:
             toggleButtonRowActiveOne(navButtonElements, navButtonInfoElement);
             break;
         case headerElement.id:
