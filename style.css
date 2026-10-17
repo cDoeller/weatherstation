@@ -121,10 +121,10 @@ header {
   padding-left: 1rem;
   position: sticky;
   top: var(--nav-offset);
+  z-index: 100;
 }
 
-.nav-button {
-}
+.nav-button {}
 
 #div-header-image {
   width: 100%;
@@ -183,8 +183,7 @@ main {
   padding: 0.2rem;
 }
 
-.data-now-headline {
-}
+.data-now-headline {}
 
 #data-now-data-inner-temperature {
   /* background-color: rgb(255, 187, 187); */
@@ -226,28 +225,60 @@ main {
   gap: 1px;
 }
 
-.graphs-button {
+.graphs-button {}
+
+#button-dht-tmp {}
+
+#button-dht-hum {}
+
+#button-scd-co2 {}
+
+#button-bmp-gas {}
+
+#button-bmp-pre {}
+
+#button-pms-pm {}
+
+#button-pms-pmc {}
+
+#graphs-date-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
 }
 
-#button-dht-tmp {
+#graphs-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-#button-dht-hum {
+.graph-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-#button-scd-co2 {
+.graph-canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 300px;
 }
 
-#button-bmp-gas {
+.graph-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
 }
 
-#button-bmp-pre {
-}
-
-#button-pms-pm {
-}
-
-#button-pms-pmc {
+.graph-checkbox {
+  border: var(--general-line-weight) solid var(--general-border-color);
+  color: white;
+  background-color: black;
+  padding: 0.2rem;
 }
 
 /* ----------------------- */
@@ -265,16 +296,14 @@ main {
   overflow-x: auto;
 }
 
-table {
-}
+table {}
 
-thead {
-}
+thead {}
 
-tr {
-}
+tr {}
 
-th, td {
+th,
+td {
   white-space: nowrap;
   min-width: fit-content;
   padding: 0 0.5rem;
@@ -282,8 +311,7 @@ th, td {
   text-align: center;
 }
 
-#weather-data-body {
-}
+#weather-data-body {}
 
 /* INFO */
 

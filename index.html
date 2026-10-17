@@ -80,7 +80,7 @@
     <section id="graphs">
       <p>data graphs</p>
       <div id="graphs-button-wrapper">
-        <button class="button graphs-button" id="button-dht-tmp">
+        <button class="button graphs-button button-active" id="button-dht-tmp">
           temperature
         </button>
         <button class="button graphs-button" id="button-dht-hum">
@@ -100,8 +100,26 @@
           pm count
         </button>
       </div>
-      <!-- <div>--- DATE PICKER HERE ---</div> -->
-      <!-- <div>--- GRAPHS HERE ---</div> -->
+
+
+      <div id="graphs-date-wrapper">
+        <label>
+          start
+          <input type="date" id="graphs-start-date">
+        </label>
+
+        <label>
+          end
+          <input type="date" id="graphs-end-date">
+        </label>
+
+        <button class="button" id="graphs-date-submit">
+          update
+        </button>
+      </div>
+
+      <div id="graphs-container"></div>
+
     </section>
 
     <!-- PAST SECTION -->
@@ -152,7 +170,8 @@
       </p>
       <p>
         The system combines several sensors to measure air temperature and humidity (DHT22, BME680, SCD41), atmospheric
-        pressure, and gas resistance as an indicator of changes in air composition. A particulate matter sensor (PMS 5003) measures
+        pressure, and gas resistance as an indicator of changes in air composition. A particulate matter sensor (PMS
+        5003) measures
         airborne particles of different sizes, including PM1, PM2.5, and PM10. Carbon dioxide levels are also
         recorded (SCD 41). The collected data is transmitted automatically and made accessible through this website.
       </p>
@@ -163,7 +182,7 @@
         plants and their living conditions can be approached through different forms of sensing, and how measurement
         technologies shape what we perceive as our environment — including what remains invisible or unmeasured.</p>
       </p>
-      
+
       <!-- <div id="div-header-image">
         <img src="../media/ws-phone-test.jpg" alt="" />
       </div> -->
@@ -172,6 +191,7 @@
   </main>
 
   <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
   <script type="module" src="./index.js"></script>
 </body>
 
