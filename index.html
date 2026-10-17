@@ -14,30 +14,30 @@
 <body>
 
   <!-- TOP BUTTON -->
-  <button class="button" id="top-button" onclick="handleNavButtonClick('header')">
+  <button class="button" id="top-button">
     top
   </button>
 
   <!-- HEADER -->
   <header id="header">
     <div id="div-header-image">
-      <img src="../media/ws-phone-test.jpg" alt="" />
+      <img src="./media/ws-phone-test.jpg" alt="" />
     </div>
     <p id="header-title">the weather station</p>
   </header>
 
   <!-- NAV BAR -->
   <nav id="nav-buttons-wrapper">
-    <button onclick="handleNavButtonClick('data-now')" class="button nav-button" id="nav-button-now">
+    <button class="button nav-button" id="nav-button-now">
       latest data
     </button>
-    <button onclick="handleNavButtonClick('graphs')" class="button nav-button" id="nav-button-graphs">
+    <button class="button nav-button" id="nav-button-graphs">
       data graphs
     </button>
-    <button onclick="handleNavButtonClick('data-past')" class="button nav-button" id="nav-button-raw">
+    <button class="button nav-button" id="nav-button-raw">
       raw data
     </button>
-    <button onclick="handleNavButtonClick('info')" class="button nav-button" id="nav-button-info">
+    <button class="button nav-button" id="nav-button-info">
       info
     </button>
   </nav>
@@ -100,6 +100,7 @@
           pm count
         </button>
       </div>
+      <!-- <div>--- DATE PICKER HERE ---</div> -->
       <!-- <div>--- GRAPHS HERE ---</div> -->
     </section>
 
@@ -162,14 +163,16 @@
         plants and their living conditions can be approached through different forms of sensing, and how measurement
         technologies shape what we perceive as our environment — including what remains invisible or unmeasured.</p>
       </p>
-      <div id="div-header-image">
+      
+      <!-- <div id="div-header-image">
         <img src="../media/ws-phone-test.jpg" alt="" />
-      </div>
+      </div> -->
+
     </section>
   </main>
 
   <!-- SCRIPTS -->
-  <script src="./index.js"></script>
+  <script type="module" src="./index.js"></script>
 </body>
 
 </html>
