@@ -1,21 +1,16 @@
-// file für alle chartfunktionen
-
-
 // -------------------------
 // SETTINGS
 // -------------------------
 
 const MAX_CHART_POINTS = 800;
-
 const MIN_DATE = "2026-10-14";
-
 
 // -------------------------
 // DATA
 // -------------------------
 
 import { fetchWeatherDataRange } from "./data.js";
-
+import { toggleButtonActive } from "./navigation.js";
 
 // -------------------------
 // ELEMENTS
@@ -265,21 +260,25 @@ async function updateChartsFromDatePicker() {
 
     if (!startDate || !endDate) {
         console.warn("[CHARTS] Please select both dates.");
+        window.alert("Please select both dates.");
         return;
     }
 
     if (startDate < MIN_DATE) {
         console.warn("[CHARTS] Start date is too early.");
+        window.alert("Please select start date later than 14. October 2026.");
         return;
     }
 
     if (endDate > getTodayDateString()) {
         console.warn("[CHARTS] End date cannot be in the future.");
+        window.alert("End date cannot be in the future.");
         return;
     }
 
     if (startDate > endDate) {
         console.warn("[CHARTS] Start date must be before end date.");
+        window.alert("[WARNING] Start date must be before end date.");
         return;
     }
 
@@ -309,6 +308,7 @@ function setupGraphButtons() {
                 buttonChartMap[button.id];
 
             toggleGraph(button, chartName);
+            toggleButtonActive(button);
         });
     });
 }
@@ -325,15 +325,8 @@ function toggleGraph(button, chartName) {
     }
 
     if (button.classList.contains("button-active")) {
-
-        button.classList.remove("button-active");
-
         removeChart(chartName);
-
     } else {
-
-        button.classList.add("button-active");
-
         renderChart(chartName);
     }
 }
@@ -342,6 +335,7 @@ function toggleGraph(button, chartName) {
 // -------------------------
 // RENDER ACTIVE CHARTS
 // -------------------------
+// ---------------------------------------------------------???
 
 function renderActiveCharts() {
 
@@ -352,7 +346,7 @@ function renderActiveCharts() {
     graphButtonElements.forEach((button) => {
 
         if (!button.classList.contains("button-active")) {
-            return;
+            return; // beendet nur den einen durchlauf des forEach
         }
 
         const chartName =
@@ -437,17 +431,33 @@ function renderChart(chartName) {
     definition.datasets.forEach(
         (datasetDefinition, index) => {
 
+            // mehr als ein sensorwert?
             if (definition.datasets.length > 1) {
 
-                const checkbox =
-                    createCheckbox(
-                        chartName,
-                        datasetDefinition.label,
-                        index
-                    );
+                const button = createSensorButton(chartName, datasetDefinition.label, index);
 
-                controls.appendChild(
-                    checkbox.wrapper
+                controls.appendChild(button);
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        toggleButtonActive(button);
+
+                        const chart =
+                            chartInstances[chartName];
+
+                        if (!chart) {
+                            return;
+                        }
+
+                        chart.data.datasets[index].hidden =
+                            !button.classList.contains(
+                                "button-active"
+                            );
+
+                        chart.update();
+                    }
                 );
             }
 
@@ -461,7 +471,7 @@ function renderChart(chartName) {
         }
     );
 
-
+    // configure chart preferences
     chartInstances[chartName] =
         new Chart(canvas, {
 
@@ -485,7 +495,60 @@ function renderChart(chartName) {
                 plugins: {
 
                     legend: {
-                        display: false,
+                        display: true,
+                        position: 'bottom',
+                        align: "start",
+
+                        onHover: (event, legendItem, legend) => {
+
+                            const chart = legend.chart;
+
+                            chart.data.datasets.forEach(
+                                (dataset, index) => {
+
+                                    if (index === legendItem.datasetIndex) {
+
+                                        dataset.borderColor = "#000000";
+                                        dataset.borderWidth = 2;
+
+                                    } else {
+
+                                        dataset.borderColor = "#AAAAAA";
+                                        dataset.borderWidth = 1;
+
+                                    }
+
+                                }
+                            );
+
+                            chart.update();
+                        },
+
+                        onLeave: (event, legendItem, legend) => {
+
+                            const chart = legend.chart;
+
+                            chart.data.datasets.forEach(
+                                (dataset) => {
+
+                                    dataset.borderColor = "#888888";
+                                    dataset.borderWidth = 1;
+
+                                }
+                            );
+
+                            chart.update();
+                        },
+
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: (items) => {
+                                const timestamp = items[0].parsed.x;
+
+                                return formatChartTime(timestamp);
+                            },
+                        },
                     },
 
                 },
@@ -497,6 +560,8 @@ function renderChart(chartName) {
                         type: "linear",
 
                         ticks: {
+                            maxRotation: 90,
+                            minRotation: 90,
 
                             callback: (value) => {
 
@@ -517,12 +582,6 @@ function renderChart(chartName) {
                 },
             },
         });
-
-
-    setupCheckboxEvents(
-        chartName,
-        definition
-    );
 }
 
 
@@ -538,11 +597,11 @@ function createDataset(
 
     const grayscale = [
         "#000000",
-        "#444444",
-        "#777777",
-        "#AAAAAA",
-        "#222222",
-        "#666666",
+        "#3b3b3b",
+        "#6c6c6c",
+        "#969696",
+        "#bdbdbd",
+        "#e6e6e6",
     ];
 
     return {
@@ -584,105 +643,23 @@ function createDataset(
 
 
 // -------------------------
-// CHECKBOX
+// SENSOR BUTTON
 // -------------------------
 
-function createCheckbox(
-    chartName,
-    label,
-    index
-) {
+function createSensorButton(chartName, label, index) {
 
-    const wrapper =
-        document.createElement("label");
+    const button =
+        document.createElement("button");
 
-    wrapper.className =
-        "graph-checkbox";
+    button.className =
+        "button button-active";
 
+    button.textContent = label;
 
-    const input =
-        document.createElement("input");
+    button.dataset.chart = chartName;
+    button.dataset.dataset = index;
 
-    input.type = "checkbox";
-
-    input.checked = true;
-
-    input.dataset.chart =
-        chartName;
-
-    input.dataset.dataset =
-        index;
-
-
-    const text =
-        document.createElement("span");
-
-    text.textContent =
-        label;
-
-
-    wrapper.appendChild(input);
-
-    wrapper.appendChild(text);
-
-
-    return {
-        wrapper,
-        input,
-    };
-}
-
-
-// -------------------------
-// CHECKBOX EVENTS
-// -------------------------
-
-function setupCheckboxEvents(
-    chartName,
-    definition
-) {
-
-    const wrapper =
-        document.getElementById(
-            `graph-wrapper-${chartName}`
-        );
-
-    if (!wrapper) {
-        return;
-    }
-
-    const checkboxes =
-        wrapper.querySelectorAll(
-            "input[type='checkbox']"
-        );
-
-    checkboxes.forEach((checkbox) => {
-
-        checkbox.addEventListener(
-            "change",
-            () => {
-
-                const datasetIndex =
-                    Number(
-                        checkbox.dataset.dataset
-                    );
-
-                const chart =
-                    chartInstances[chartName];
-
-                if (!chart) {
-                    return;
-                }
-
-                chart.data.datasets[
-                    datasetIndex
-                ].hidden =
-                    !checkbox.checked;
-
-                chart.update();
-            }
-        );
-    });
+    return button;
 }
 
 
