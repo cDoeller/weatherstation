@@ -63,7 +63,7 @@ navButtonElements.forEach((button) => {
 });
 
 topButtonElement.addEventListener("click", () => {
-    handleNavButtonClick(headerElement.id)
+    handleNavButtonClick(nowElement.id)
 });
 
 // -------------------------
@@ -86,7 +86,7 @@ function handleNavButtonClick(target) {
         case infoElement.id:
             toggleButtonRowActiveOne(navButtonElements, navButtonInfoElement);
             break;
-        case headerElement.id:
+        case nowElement.id:
             resetButtonsActive();
             break;
     }
@@ -117,7 +117,7 @@ function toggleButtonRowActiveOne(buttons, button) {
     if (buttons.includes(button)) button.classList.add("button-active");
 }
 
-function toggleButtonActive(button) {
+export function toggleButtonActive(button) {
     if (!button) return;
 
     if (button.classList.contains("button-active")) {
