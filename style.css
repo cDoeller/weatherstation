@@ -328,6 +328,14 @@ td {
   gap: 1rem;
 }
 
+.info-text-wrapper{
+  display: flex;
+  flex-direction: column;
+  gap:1rem;
+  max-width: 95%;
+  hyphens: auto;
+}
+
 @media (min-width: 900px) {
   main, nav {
     max-width: 900px;

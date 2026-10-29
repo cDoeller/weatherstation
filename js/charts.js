@@ -503,46 +503,54 @@ function renderChart(chartName) {
                         position: 'bottom',
                         align: "start",
 
-                        onHover: (event, legendItem, legend) => {
+                        // onHover: (event, legendItem, legend) => {
 
-                            const chart = legend.chart;
+                        //     if (isMobile) {
+                        //         return;
+                        //     }
 
-                            chart.data.datasets.forEach(
-                                (dataset, index) => {
+                        //     const chart = legend.chart;
 
-                                    if (index === legendItem.datasetIndex) {
+                        //     chart.data.datasets.forEach(
+                        //         (dataset, index) => {
 
-                                        dataset.borderColor = "#000000";
-                                        dataset.borderWidth = 2;
+                        //             if (index === legendItem.datasetIndex) {
 
-                                    } else {
+                        //                 dataset.borderColor = "#000000";
+                        //                 dataset.borderWidth = 2;
 
-                                        dataset.borderColor = "#AAAAAA";
-                                        dataset.borderWidth = 1;
+                        //             } else {
 
-                                    }
+                        //                 dataset.borderColor = "#AAAAAA";
+                        //                 dataset.borderWidth = 1;
 
-                                }
-                            );
+                        //             }
 
-                            chart.update();
-                        },
+                        //         }
+                        //     );
 
-                        onLeave: (event, legendItem, legend) => {
+                        //     chart.update();
+                        // },
 
-                            const chart = legend.chart;
+                        // onLeave: (event, legendItem, legend) => {
 
-                            chart.data.datasets.forEach(
-                                (dataset) => {
+                        //     if (isMobile) {
+                        //         return;
+                        //     }
 
-                                    // dataset.borderColor = "#888888";
-                                    dataset.borderWidth = 1;
+                        //     const chart = legend.chart;
 
-                                }
-                            );
+                        //     chart.data.datasets.forEach(
+                        //         (dataset) => {
 
-                            chart.update();
-                        },
+                        //             // dataset.borderColor = "#888888";
+                        //             dataset.borderWidth = 1;
+
+                        //         }
+                        //     );
+
+                        //     chart.update();
+                        // },
 
                     },
                     tooltip: {
@@ -554,7 +562,6 @@ function renderChart(chartName) {
                             },
                         },
                     },
-
                 },
 
                 scales: {
@@ -586,8 +593,26 @@ function renderChart(chartName) {
                 },
             },
         });
+
+    setupTooltipClose(chartInstances[chartName]);
 }
 
+// -------------------------
+// EVENT LISTENER TOOLTIP
+// -------------------------
+
+function setupTooltipClose(chart) {
+
+    document.addEventListener("pointerdown", (event) => {
+
+        if (!chart.canvas.contains(event.target)) {
+
+            chart.tooltip.setActiveElements([]);
+
+            chart.update("none");
+        }
+    });
+}
 
 // -------------------------
 // DATASET
