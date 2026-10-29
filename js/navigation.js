@@ -9,6 +9,8 @@ const nowElement = document.getElementById("data-now");
 const graphsElement = document.getElementById("graphs");
 const pastElement = document.getElementById("data-past");
 const infoElement = document.getElementById("info");
+const headerTitleElement =
+    document.getElementById("header-title");
 
 const topButtonElement = document.getElementById("top-button");
 const navButtonNowElement = document.getElementById("nav-button-now");
@@ -149,6 +151,23 @@ function checkTopButtonScrollActive() {
     }
 }
 
+// SCROLL HELPER - HEADER TITLE
+function checkHeaderTitleScroll() {
+
+    if (window.scrollY > 10) {
+
+        headerTitleElement.classList.add(
+            "header-title-inverted"
+        );
+
+    } else {
+
+        headerTitleElement.classList.remove(
+            "header-title-inverted"
+        );
+    }
+}
+
 // SCROLL HELPER - NAV
 function checkNavButtonsScrollActive() {
     if (scrollActionActive) return;
@@ -183,6 +202,9 @@ export function startNavigation() {
     window.addEventListener("scroll", () => {
         // CHECK TOP BUTTON DISPLAY
         checkTopButtonScrollActive();
+
+        // CHECK HEADER TITLE
+        checkHeaderTitleScroll();
 
         // CHECK ACTIVE STATE NAV BUTTONS
         checkNavButtonsScrollActive();

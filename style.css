@@ -123,7 +123,7 @@ img {
 header {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  /* gap: 1rem; */
   height: 100dvh;
 }
 
@@ -152,8 +152,18 @@ header {
 } */
 
 #header-title {
-  padding-left: 1rem;
-  margin-bottom: 1rem;
+  padding: 1rem 0 1rem 1rem;
+  background-color: var(--inverse-background-color);
+  color: var(--inverse-font-color);
+
+    transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
+}
+
+#header-title.header-title-inverted {
+  background-color: var(--background-color);
+  color: var(--font-color);
 }
 
 #nav-buttons-wrapper {
