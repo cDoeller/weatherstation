@@ -180,7 +180,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
 }
 
 /* ----------------------- */
@@ -334,6 +334,17 @@ td {
   gap:1rem;
   max-width: 95%;
   hyphens: auto;
+}
+
+#info-schema-image{
+  max-width: 600px;
+  margin: auto;
+}
+
+footer{
+  padding: 0.25rem 1rem;
+  background-color: var(--inverse-background-color);
+  color: var(--inverse-font-color);
 }
 
 @media (min-width: 900px) {
