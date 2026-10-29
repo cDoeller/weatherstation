@@ -337,9 +337,11 @@ td {
 }
 
 #info-schema-image{
-  max-width: 600px;
+  max-width: 580px;
   margin: auto;
 }
+
+/* FOOTER */
 
 footer{
   padding: 0.25rem 1rem;
