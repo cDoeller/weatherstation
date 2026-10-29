@@ -233,9 +233,9 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 1px;
-  position: sticky;
+  /* position: sticky;
   top: 3rem;
-  z-index: 90;
+  z-index: 90; */
 }
 
 #graphs-container {
