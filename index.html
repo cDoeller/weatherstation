@@ -9,6 +9,8 @@
 
   <link rel="stylesheet" href="reset.css" />
   <link rel="stylesheet" href="style.css" />
+
+  <link rel="icon" type="image/png">
 </head>
 
 <body>
@@ -25,7 +27,11 @@
       <img src="./media/christian-doeller-weather-station.webp" loading="eager" decoding="async" width="3340"
         height="2227" alt="weather station umweltgarten leipzig" />
     </div>
-    <span id="header-title">the weather station</span>
+    <div id="header-title-wrapper">
+      <canvas id="wind-flag" width="20" height="20"></canvas>
+      <span id="header-title">the weather station</span>
+    </div>
+
   </header>
 
   <!-- NAV BAR -->
@@ -198,8 +204,10 @@
         </p>
         <p>
           Beyond its function as a monitoring device, the weather station is part of the artistic research project
-          »Vegetal Diaries« by Christian Doeller. At the intersection of urban ecologies, environmental monitoring, and the relationship
-          between »the living world« and technology, the project investigates urban ruderal plants, urban energy flows, and
+          »Vegetal Diaries« by Christian Doeller. At the intersection of urban ecologies, environmental monitoring, and
+          the relationship
+          between »the living world« and technology, the project investigates urban ruderal plants, urban energy flows,
+          and
           speculative practices of environmental observation.
         </p>
         <p>
@@ -207,8 +215,7 @@
         </p>
       </div>
       <div id="info-schema-image">
-        <img src="./media/WS-schema.png" width="1000"
-          height="1500" alt="doeller weather station schema" />
+        <img src="./media/WS-schema.png" width="1000" height="1500" alt="doeller weather station schema" />
       </div>
 
     </section>

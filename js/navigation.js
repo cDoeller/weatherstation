@@ -10,7 +10,7 @@ const graphsElement = document.getElementById("graphs");
 const pastElement = document.getElementById("data-past");
 const infoElement = document.getElementById("info");
 const headerTitleElement =
-    document.getElementById("header-title");
+    document.getElementById("header-title-wrapper");
 
 const topButtonElement = document.getElementById("top-button");
 const navButtonNowElement = document.getElementById("nav-button-now");
@@ -157,13 +157,13 @@ function checkHeaderTitleScroll() {
     if (window.scrollY > 10) {
 
         headerTitleElement.classList.add(
-            "header-title-inverted"
+            "header-title-wrapper-inverted"
         );
 
     } else {
 
         headerTitleElement.classList.remove(
-            "header-title-inverted"
+            "header-title-wrapper-inverted"
         );
     }
 }
